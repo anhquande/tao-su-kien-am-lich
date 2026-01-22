@@ -23,6 +23,7 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "baseHref": "/tao-su-kien-am-lich/",
             "assets": [
               {
                 "glob": "**/*",
@@ -74,7 +75,13 @@
           "builder": "@angular/build:unit-test"
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "repo": "https://github.com/anhquande/tao-su-kien-am-lich.git",
+            "branch": "gh-pages",
+            "noJekyll": false,
+            "baseHref": "/tao-su-kien-am-lich/"
+          }
         }
       }
     }
