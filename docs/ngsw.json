@@ -1,0 +1,77 @@
+{
+  "configVersion": 1,
+  "timestamp": 1769068760866,
+  "index": "/tao-su-kien-am-lich/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/tao-su-kien-am-lich/favicon.ico",
+        "/tao-su-kien-am-lich/index.html",
+        "/tao-su-kien-am-lich/main-T4IGIQEE.js",
+        "/tao-su-kien-am-lich/manifest.webmanifest",
+        "/tao-su-kien-am-lich/styles-4KNJEDFK.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/tao-su-kien-am-lich/icons/icon-128x128.png",
+        "/tao-su-kien-am-lich/icons/icon-144x144.png",
+        "/tao-su-kien-am-lich/icons/icon-152x152.png",
+        "/tao-su-kien-am-lich/icons/icon-192x192.png",
+        "/tao-su-kien-am-lich/icons/icon-384x384.png",
+        "/tao-su-kien-am-lich/icons/icon-512x512.png",
+        "/tao-su-kien-am-lich/icons/icon-72x72.png",
+        "/tao-su-kien-am-lich/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/tao-su-kien-am-lich/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/tao-su-kien-am-lich/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/tao-su-kien-am-lich/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/tao-su-kien-am-lich/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/tao-su-kien-am-lich/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/tao-su-kien-am-lich/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/tao-su-kien-am-lich/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/tao-su-kien-am-lich/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/tao-su-kien-am-lich/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/tao-su-kien-am-lich/index.html": "3904e6a9f2df7daed947bcb90b7b5be879736d83",
+    "/tao-su-kien-am-lich/main-T4IGIQEE.js": "66051cb4b68dce91b2f3e6c36e3c9d983fe35abd",
+    "/tao-su-kien-am-lich/manifest.webmanifest": "67c926351a26a801b2f9d2fdceb42003fc71b32c",
+    "/tao-su-kien-am-lich/styles-4KNJEDFK.css": "9aad50e8b224277244b130cbdd5e2f07477e6f09"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
