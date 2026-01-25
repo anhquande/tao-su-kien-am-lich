@@ -1,5 +1,5 @@
-import { Component, effect, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, effect, inject, signal } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +11,10 @@ import { ParsedEvent } from '../../models/event/parsed-event';
 import { EventParserService } from '../../services/event-parser/event-parser.service';
 import { EventCreatorService } from '../../services/event-creator/event-creator.service';
 import { PreviewEvent } from '../../models/event/preview-event';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { AmlichFormBuilder, AmlichFormGroup } from './amlich.forrm.builder';
 
 @Component({
   selector: 'app-convert',
@@ -21,50 +25,60 @@ import { PreviewEvent } from '../../models/event/preview-event';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './convert.component.html',
   styleUrls: ['./convert.component.scss']
 })
 export class ConvertComponent {
 
-  input = signal(`27/11/2023 Giỗ Ông #{{eventIndex}}. (AL: {{lunarDay}}/{{lunarMonth}}/{{lunarYear}})`);
-
-  startYear = signal(new Date().getFullYear());
-  endYear = signal<number | null>(null);
+  public form: AmlichFormGroup;
+  private readonly sampleInput = `27/11/2023 Giỗ Ông #{{eventIndex}}. (AL: {{lunarDay}}/{{lunarMonth}}/{{lunarYear}})`;
+  private readonly initStartYear = new Date().getFullYear();
+  private readonly initEndYear = null;
 
   loading = signal(false);
   error = signal('');
   previews = signal<Array<PreviewEvent>>([]);
   generatedEvents = signal<Array<EventAttributes>>([]);
 
-  constructor(
-    private ics: IcsService,
-    private eventParser: EventParserService,
-    private eventCreator: EventCreatorService
-  ) {
+  private ics: IcsService = inject(IcsService);
+  private eventParser: EventParserService = inject(EventParserService);
+  private eventCreator: EventCreatorService = inject(EventCreatorService);
+  private fb: AmlichFormBuilder = inject(AmlichFormBuilder);
+
+  public constructor() {
+
+    this.form = this.fb.build(
+      this.sampleInput,
+      this.initStartYear,
+      this.initEndYear
+    );
+
+    const $formValue = toSignal(
+      this.form.valueChanges.pipe(map(() => this.form.getRawValue())), { initialValue: this.form.getRawValue() }
+    );
+
+    // Create an effect to update previews and generated events when form values change
     effect(() => {
-      // Track all dependencies
-      this.input();
-      this.startYear();
-      this.endYear();
+      const { amlichEvents, startYear, endYear } = $formValue();
+      const items = this.eventParser.parseLines(amlichEvents!);
+      let effectiveEndYear = endYear;
+      if (endYear === null) {
+        effectiveEndYear = startYear + 30;
+      } else {
+        effectiveEndYear = endYear;
+      }
 
-      // Update preview whenever dependencies change
-      const items = this.parseLines();
-      const start = this.startYear();
-      const end = this.endYear() ?? this.startYear() + 30;
-
-      const events: EventAttributes[] = this.eventCreator.createRecurringSolarEvents(items, start, end);
+      const events: EventAttributes[] = this.eventCreator.createRecurringSolarEvents(items, startYear, effectiveEndYear);
       this.generatedEvents.set(events);
       this.previews.set(this.eventCreator.createPreviewEvents(events));
     });
   }
 
-  private parseLines(): Array<ParsedEvent> {
-    return this.eventParser.parseLines(this.input());
-  }
-
-  async generateICS() {
+  public async generateICS() {
     this.error.set('');
     this.loading.set(true);
 
@@ -84,7 +98,7 @@ export class ConvertComponent {
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'lich-am-expanded.ics';
+    a.download = 'lich-am.ics';
     a.click();
 
     URL.revokeObjectURL(url);

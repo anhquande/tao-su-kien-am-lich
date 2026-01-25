@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ParsedEvent } from '../../models/event/parsed-event';
 import { LunarService } from '../lunar/lunar.service';
 import { RenderTextService } from '../text/render-text.service';
@@ -11,10 +11,8 @@ import { PreviewEvent } from '../../models/event/preview-event';
 })
 export class EventCreatorService {
 
-  constructor(
-    private lunar: LunarService,
-    private textRenderer: RenderTextService,
-  ) { }
+  private lunar: LunarService = inject(LunarService);
+  private textRenderer: RenderTextService = inject(RenderTextService);
 
   public createPreviewEvents(events: Array<EventAttributes>): Array<PreviewEvent> {
     return events.map(ev => {

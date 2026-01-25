@@ -7,7 +7,7 @@ import { Context } from '../../models/context';
 })
 export class RenderTextService {
 
-  render(inputText: string, context: Context): string {
+  public render(inputText: string, context: Context): string {
     const template = Handlebars.compile(inputText);
     return template(context);
   }

@@ -1,6 +1,6 @@
 export type ParsedEvent = {
   title: string;
-    day: number;
-    month: number;
-    year: number;
+  day: number;
+  month: number;
+  year: number;
 };
