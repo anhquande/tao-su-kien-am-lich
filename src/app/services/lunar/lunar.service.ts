@@ -5,7 +5,7 @@ import { SonarDate } from '../../models/solar-date';
 @Injectable({ providedIn: 'root' })
 export class LunarService {
 
-  lunarToSolar(day: number, month: number, year: number, leap = false): SonarDate {
+  public lunarToSolar(day: number, month: number, year: number, leap = false): SonarDate {
 
     const lunar: Lunar = Lunar.fromYmd(year, month, day);
     const solar: Solar = lunar.getSolar();

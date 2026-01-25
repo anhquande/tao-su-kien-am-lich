@@ -1,5 +1,32 @@
 .convert-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    >* {
+        width: 100%;
+    }
+
+    // only the button is not full width
+    button {
+        width: auto;
+    }
+
+}
+
+.scrollable-list {
+    max-height: calc(5 * 48px);
+    overflow-y: auto;
+    border-radius: 4px;
+    scrollbar-width: thin;
+}
+
+.flow {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+
+    @media (min-width: 600px) {
+        flex-direction: row;
+    }
 }

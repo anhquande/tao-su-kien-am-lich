@@ -5,7 +5,7 @@ import { createEvents, EventAttributes } from 'ics';
 @Injectable({ providedIn: 'root' })
 export class IcsService {
 
-  generate(events: EventAttributes[]): Promise<string> {
+  public generate(events: EventAttributes[]): Promise<string> {
     return new Promise((resolve, reject) => {
       createEvents(events, (error, value) => {
         if (error) reject(error);

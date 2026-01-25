@@ -1,41 +1,44 @@
 <mat-card appearance="outlined">
   <mat-card-header>
     <mat-card-title> Tạo Events âm lịch</mat-card-title>
-    <mat-card-subtitle>ICS as format, ready to be imported to Google Calendar</mat-card-subtitle>
+    <mat-card-subtitle>Theo định dạng ICS để import vào Google Calendar hoặc Apple Calendar</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <div class="convert-form">
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Danh sách ngày âm</mat-label>
-      <textarea matInput rows="8" [(ngModel)]="input"></textarea>
-    </mat-form-field>
+    <form [formGroup]="form" class="convert-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Danh sách ngày âm</mat-label>
+        <textarea matInput rows="3" formControlName="amlichEvents"></textarea>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Năm bắt đầu</mat-label>
-      <input matInput type="number" [(ngModel)]="startYear">
-    </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Năm bắt đầu</mat-label>
+        <input matInput type="number" formControlName="startYear">
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Năm kết thúc (tùy chọn)</mat-label>
-      <input matInput type="number" [(ngModel)]="endYear">
-    </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Năm kết thúc (tùy chọn)</mat-label>
+        <input matInput type="number" formControlName="endYear">
+      </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="generateICS()" [disabled]="loading()">
-      {{ loading() ? 'Đang tạo...' : 'Download file ICS' }}
-    </button>
-    @if (error()) {
-    <p class="error">{{ error() }}</p>
-    }
+      <button mat-raised-button color="primary" (click)="generateICS()" [disabled]="loading()">
+        {{ loading() ? 'Đang tạo...' : 'Download file ICS' }}
+      </button>
+      @if (error()) {
+      <p class="error">{{ error() }}</p>
+      }
 
-    </div>
+    </form>
   </mat-card-content>
 </mat-card>
 
-
 @if (previews().length > 0) {
-<mat-card class="card preview">
-  <h2>Preview (Dương Lịch)</h2>
-  <mat-list>
+<mat-card appearance="outlined" class="preview-card">
+  <mat-card-header>
+    <mat-card-title>Xem trước các sự kiện trong Dương Lịch</mat-card-title>
+    <mat-card-subtitle>Kiểm tra kỹ trước khi download</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-list class="scrollable-list">
     @for (v of previews(); track $index) {
     <mat-list-item>
       <div matListItemTitle>{{$index + 1}}. {{ v.title }}</div>
