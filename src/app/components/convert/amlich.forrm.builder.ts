@@ -1,4 +1,4 @@
-import { inject } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 
 // define the type of the FormGroup
@@ -10,6 +10,9 @@ export type AmlichFormGroup = FormGroup<{
 // get type of form value
 export type AmlichFormValue = AmlichFormGroup['value'];
 
+@Injectable({
+  providedIn: 'root',
+})
 export class AmlichFormBuilder {
 
   private fb = inject(FormBuilder);
