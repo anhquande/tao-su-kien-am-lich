@@ -11,6 +11,8 @@ import { ParsedEvent } from '../../models/event/parsed-event';
 import { EventParserService } from '../../services/event-parser/event-parser.service';
 import { EventCreatorService } from '../../services/event-creator/event-creator.service';
 import { PreviewEvent } from '../../models/event/preview-event';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 @Component({
   selector: 'app-convert',
@@ -21,7 +23,8 @@ import { PreviewEvent } from '../../models/event/preview-event';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule
   ],
   templateUrl: './convert.component.html',
   styleUrls: ['./convert.component.scss']
