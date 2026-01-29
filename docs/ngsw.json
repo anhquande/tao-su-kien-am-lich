@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1769650636647,
+  "timestamp": 1769651771698,
   "index": "/tao-su-kien-am-lich/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/tao-su-kien-am-lich/favicon.ico",
         "/tao-su-kien-am-lich/index.html",
-        "/tao-su-kien-am-lich/main-CWYGFPOI.js",
+        "/tao-su-kien-am-lich/main-2LP5Q52V.js",
         "/tao-su-kien-am-lich/manifest.webmanifest",
         "/tao-su-kien-am-lich/styles-4KNJEDFK.css"
       ],
@@ -50,8 +50,8 @@
     "/tao-su-kien-am-lich/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
     "/tao-su-kien-am-lich/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
     "/tao-su-kien-am-lich/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
-    "/tao-su-kien-am-lich/index.html": "f5fb7cad4664f7a580812663cb3088d6d530fa65",
-    "/tao-su-kien-am-lich/main-CWYGFPOI.js": "94b9c73ed412177f2daa60963a59bebbb1ea5098",
+    "/tao-su-kien-am-lich/index.html": "3f71de43954ae37b9d8ddd21215797da481d5cd4",
+    "/tao-su-kien-am-lich/main-2LP5Q52V.js": "721418050adfbc921cd6310d3b25c761957b86cb",
     "/tao-su-kien-am-lich/manifest.webmanifest": "67c926351a26a801b2f9d2fdceb42003fc71b32c",
     "/tao-su-kien-am-lich/styles-4KNJEDFK.css": "9aad50e8b224277244b130cbdd5e2f07477e6f09"
   },
