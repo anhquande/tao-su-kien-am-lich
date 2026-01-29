@@ -8,8 +8,9 @@
         </div>
 
         <mat-button-toggle-group name="language" aria-label="Language" appearance="legacy" (change)="changeLanguage($event.value)" [value]="currentLang()">
-          <mat-button-toggle value="en">English</mat-button-toggle>
-          <mat-button-toggle value="vi">Tiếng Việt</mat-button-toggle>
+          @for (lang of languages(); track lang.code) {
+          <mat-button-toggle [value]="lang.code">{{ lang.label }}</mat-button-toggle>
+          }
         </mat-button-toggle-group>
       </div>
     </mat-card-header>

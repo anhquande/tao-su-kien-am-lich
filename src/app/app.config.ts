@@ -6,6 +6,7 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
+import { availableLangs, defaultLang, fallbackLang } from './transloco/transloco.config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,9 +19,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideTransloco({
       config: {
-        availableLangs: ['en', 'vi'],
-        defaultLang: 'vi',
-        fallbackLang: 'en',
+        availableLangs: availableLangs,
+        defaultLang: defaultLang,
+        fallbackLang: fallbackLang,
         // Remove this option if your application doesn't support changing language in runtime.
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
