@@ -15,6 +15,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { AmlichFormBuilder, AmlichFormGroup } from './amlich.forrm.builder';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-convert',
@@ -28,6 +30,8 @@ import { AmlichFormBuilder, AmlichFormGroup } from './amlich.forrm.builder';
     MatListModule,
     MatGridListModule,
     ReactiveFormsModule,
+    TranslocoModule,
+    MatButtonToggleModule,
   ],
   templateUrl: './convert.component.html',
   styleUrls: ['./convert.component.scss']
@@ -43,13 +47,20 @@ export class ConvertComponent {
   error = signal('');
   previews = signal<Array<PreviewEvent>>([]);
   generatedEvents = signal<Array<EventAttributes>>([]);
+  currentLang = signal('en');
 
   private ics: IcsService = inject(IcsService);
   private eventParser: EventParserService = inject(EventParserService);
   private eventCreator: EventCreatorService = inject(EventCreatorService);
   private fb: AmlichFormBuilder = inject(AmlichFormBuilder);
+  private transloco = inject(TranslocoService);
 
   public constructor() {
+
+    effect(() => {
+      const lang = this.currentLang();
+      this.transloco.setActiveLang(lang);
+    });
 
     this.form = this.fb.build(
       this.sampleInput,
@@ -76,6 +87,10 @@ export class ConvertComponent {
       this.generatedEvents.set(events);
       this.previews.set(this.eventCreator.createPreviewEvents(events));
     });
+  }
+
+  public changeLanguage(lang: string) {
+    this.currentLang.set(lang);
   }
 
   public async generateICS() {

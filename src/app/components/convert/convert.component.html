@@ -1,50 +1,61 @@
-<mat-card appearance="outlined">
-  <mat-card-header>
-    <mat-card-title> Tạo Events âm lịch</mat-card-title>
-    <mat-card-subtitle>Theo định dạng ICS để import vào Google Calendar hoặc Apple Calendar</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="form" class="convert-form">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Danh sách ngày âm</mat-label>
-        <textarea matInput rows="3" formControlName="amlichEvents"></textarea>
-      </mat-form-field>
+<ng-container *transloco="let t">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <div class="header-row">
+        <div>
+          <mat-card-title> {{ t('create_ics_events') }}</mat-card-title>
+          <mat-card-subtitle>{{ t('ics_import_subtitle') }}</mat-card-subtitle>
+        </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Năm bắt đầu</mat-label>
-        <input matInput type="number" formControlName="startYear">
-      </mat-form-field>
+        <mat-button-toggle-group name="language" aria-label="Language" appearance="legacy" (change)="changeLanguage($event.value)" [value]="currentLang()">
+          <mat-button-toggle value="en">English</mat-button-toggle>
+          <mat-button-toggle value="vi">Tiếng Việt</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" class="convert-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ t('amlich_events') }}</mat-label>
+          <textarea matInput rows="3" formControlName="amlichEvents"></textarea>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Năm kết thúc (tùy chọn)</mat-label>
-        <input matInput type="number" formControlName="endYear">
-      </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ t('start_year') }}</mat-label>
+          <input matInput type="number" formControlName="startYear">
+        </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="generateICS()" [disabled]="loading()">
-        {{ loading() ? 'Đang tạo...' : 'Download file ICS' }}
-      </button>
-      @if (error()) {
-      <p class="error">{{ error() }}</p>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ t('end_year') }}</mat-label>
+          <input matInput type="number" formControlName="endYear">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="generateICS()" [disabled]="loading()">
+          {{ loading() ? t('loading') : t('download_ics') }}
+        </button>
+        @if (error()) {
+        <p class="error">{{ error() }}</p>
+        }
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  @if (previews().length > 0) {
+  <mat-card appearance="outlined" class="preview-card">
+    <mat-card-header>
+      <mat-card-title>{{ t('preview_events') }}</mat-card-title>
+      <mat-card-subtitle>{{ t('check_before_download') }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-list class="scrollable-list">
+      @for (v of previews(); track $index) {
+      <mat-list-item>
+        <div matListItemTitle>🌛{{$index + 1}}. {{ v.title }} </div>
+        <div matListItemLine>🌞 {{ v.solarDate }} </div>
+      </mat-list-item>
       }
-
-    </form>
-  </mat-card-content>
-</mat-card>
-
-@if (previews().length > 0) {
-<mat-card appearance="outlined" class="preview-card">
-  <mat-card-header>
-    <mat-card-title>Xem trước các sự kiện trong Dương Lịch</mat-card-title>
-    <mat-card-subtitle>Kiểm tra kỹ trước khi download</mat-card-subtitle>
-  </mat-card-header>
-
-  <mat-list class="scrollable-list">
-    @for (v of previews(); track $index) {
-    <mat-list-item>
-      <div matListItemTitle>🌛{{$index + 1}}. {{ v.title }}  </div>
-      <div matListItemLine>🌞 {{ v.solarDate }} </div>
-    </mat-list-item>
-    }
-  </mat-list>
-</mat-card>
-}
+    </mat-list>
+  </mat-card>
+  }
+</ng-container>
