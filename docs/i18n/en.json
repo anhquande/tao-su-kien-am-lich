@@ -1,0 +1,11 @@
+{
+    "create_ics_events": "Create ICS Events",
+    "ics_import_subtitle": "Based on ICS format to import into Google Calendar or Apple Calendar",
+    "amlich_events": "Lunar Events",
+    "start_year": "Start Year",
+    "end_year": "End Year (optional)",
+    "loading": "Loading",
+    "download_ics": "Download ICS File",
+    "preview_events": "Preview Events in Gregorian Calendar",
+    "check_before_download": "Check carefully before downloading"
+}
