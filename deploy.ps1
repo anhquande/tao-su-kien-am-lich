@@ -1,5 +1,5 @@
 git checkout gh-pages
-git merge main
+git merge main --no-edit
 
 # 1) Delete everything inside ./docs and ./dist
 Write-Host "Cleaning docs and dist folders..."
