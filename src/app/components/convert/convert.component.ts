@@ -17,6 +17,7 @@ import { map } from 'rxjs';
 import { AmlichFormBuilder, AmlichFormGroup } from './amlich.forrm.builder';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { defaultLang, availableLanguagesWithLabels } from '../../transloco/transloco.config';
 
 @Component({
   selector: 'app-convert',
@@ -47,7 +48,8 @@ export class ConvertComponent {
   error = signal('');
   previews = signal<Array<PreviewEvent>>([]);
   generatedEvents = signal<Array<EventAttributes>>([]);
-  currentLang = signal('en');
+  currentLang = signal(defaultLang);
+  languages = signal(availableLanguagesWithLabels)
 
   private ics: IcsService = inject(IcsService);
   private eventParser: EventParserService = inject(EventParserService);
