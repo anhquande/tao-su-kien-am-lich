@@ -1,0 +1,11 @@
+{
+    "create_ics_events": "Tạo sự kiện ICS",
+    "ics_import_subtitle": "Dựa trên định dạng ICS để nhập vào Google Calendar hoặc Apple Calendar",
+    "amlich_events": "Sự kiện âm lịch",
+    "start_year": "Năm bắt đầu",
+    "end_year": "Năm kết thúc (tùy chọn)",
+    "loading": "Đang tải",
+    "download_ics": "Tải tệp ICS",
+    "preview_events": "Xem trước sự kiện trong dương lịch",
+    "check_before_download": "Kiểm tra kỹ trước khi tải xuống"
+}
