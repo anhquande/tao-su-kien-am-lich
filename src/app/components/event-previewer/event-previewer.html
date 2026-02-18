@@ -1,0 +1,23 @@
+@let events = $events();
+<ng-container *transloco="let t">
+  @if (events.length > 0) {
+    <mat-card appearance="outlined" class="preview-card">
+      <mat-card-header>
+        <mat-card-title>{{ t('preview_events') }}</mat-card-title>
+        <mat-card-subtitle>{{ t('check_before_download') }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-list class="scrollable-list">
+        @for (v of events; track $index) {
+          <mat-list-item>
+            <div matListItemTitle [class.excluded]="v.excluded"> 🌛 {{ $index + 1 }}. {{ v.title }} {{ v.excluded ? ' (excluded)' : ''}}</div>
+
+            <div matListItemLine>🌞 {{ v.solarDate }}</div>
+          </mat-list-item>
+        }
+      </mat-list>
+    </mat-card>
+  } @else {
+    <p class="no-preview">Không có sự kiện nào để hiển thị. Vui lòng nhập dữ liệu và tạo file ICS.</p>
+  }
+</ng-container>

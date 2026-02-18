@@ -15,20 +15,20 @@
       </div>
     </mat-card-header>
     <mat-card-content>
-      <form [formGroup]="form" class="convert-form">
+      <form class="convert-form">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>{{ t('amlich_events') }}</mat-label>
-          <textarea matInput rows="3" formControlName="amlichEvents"></textarea>
+          <textarea matInput rows="8" [formField]="convertForm.lunarEvents" data-testid="lunarEvents"></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>{{ t('start_year') }}</mat-label>
-          <input matInput type="number" formControlName="startYear">
+          <input matInput type="number" [formField]="convertForm.startYear" data-testid="startYear">
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>{{ t('end_year') }}</mat-label>
-          <input matInput type="number" formControlName="endYear">
+          <input matInput type="number" [formField]="convertForm.endYear" data-testid="endYear">
         </mat-form-field>
 
         <button mat-raised-button color="primary" (click)="generateICS()" [disabled]="loading()">
@@ -42,21 +42,6 @@
     </mat-card-content>
   </mat-card>
 
-  @if (previews().length > 0) {
-  <mat-card appearance="outlined" class="preview-card">
-    <mat-card-header>
-      <mat-card-title>{{ t('preview_events') }}</mat-card-title>
-      <mat-card-subtitle>{{ t('check_before_download') }}</mat-card-subtitle>
-    </mat-card-header>
+  <app-event-previewer [events]="previews()"></app-event-previewer>
 
-    <mat-list class="scrollable-list">
-      @for (v of previews(); track $index) {
-      <mat-list-item>
-        <div matListItemTitle>🌛{{$index + 1}}. {{ v.title }} </div>
-        <div matListItemLine>🌞 {{ v.solarDate }} </div>
-      </mat-list-item>
-      }
-    </mat-list>
-  </mat-card>
-  }
 </ng-container>
